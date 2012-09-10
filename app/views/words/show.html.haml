@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @word.name
+%p
+  %b User:
+  = @word.user_id
+.btn-group
+  = link_to 'Edit', edit_word_path(@word), class: "btn btn-warning"
+  = link_to 'Back', words_path, class: "btn"

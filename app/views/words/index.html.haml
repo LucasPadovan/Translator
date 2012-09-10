@@ -1,0 +1,14 @@
+%h1 Listing words
+%table.table.table-bordered
+  %tr
+    %th Name
+    %th User
+    %th
+  - @words.each do |word|
+    %tr
+      %td= link_to word.name, word
+      %td= word.user_id
+      %td.btn-group
+        = link_to 'Edit', edit_word_path(word), class: "btn btn-warning"
+        = link_to 'Destroy', word, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger"
+= link_to 'New Word', new_word_path, class: "btn btn-primary"

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @description.description %>
+</p>
+
+<p>
+  <b>Word:</b>
+  <%= @description.word_id %>
+</p>
+
+<p>
+  <b>Word type:</b>
+  <%= @description.word_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_description_path(@description) %> |
+<%= link_to 'Back', descriptions_path %>
