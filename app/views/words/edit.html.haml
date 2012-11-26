@@ -1,5 +1,7 @@
-%h1 Editing word
+%h1= "Editando: #{@word.name}"
+%br/
 = render 'form'
+%hr
 .btn-group
-  = link_to 'Show', @word, class: "btn btn-success"
-  = link_to 'Back', words_path, class: "btn"
+  = link_to 'Ver', @word, class: "btn btn-success"
+  = link_to 'Volver', words_path, class: "btn"

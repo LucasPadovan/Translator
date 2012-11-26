@@ -1,13 +1,16 @@
 Translator::Application.routes.draw do
 
   resources :words do
-    resources :notes
-    resources :descriptions do
+    member do
+      post :new_description
       resources :notes
+      resources :descriptions do
+        resources :notes
+      end
     end
   end
 
-  resources :word_types
+  resources :word_types, except: [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -58,7 +61,7 @@ Translator::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root to: 'words#index'
+  root :to => 'words#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,0 +1,14 @@
+- if notice
+  %p.alert.alert-success= notice
+%h1 Listado de tipos de palabras
+%table.table.table-bordered
+  %tr
+    %th Nombre
+    %th Acciones
+  - @word_types.each do |word_type|
+    %tr
+      %td= word_type.name
+      %td.btn-group
+        = link_to 'Editar', edit_word_type_path(word_type), class: 'btn btn-mini btn-warning'
+        = link_to 'Eliminar', word_type, confirm: 'Are you sure?', method: :delete, class: 'btn btn-mini btn-danger'
+= link_to 'Nuevo tipo de palabra', new_word_type_path, class: 'btn btn-primary'

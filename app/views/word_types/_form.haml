@@ -1,0 +1,12 @@
+= form_for(@word_type) do |f|
+  - if @word_type.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@word_type.errors.count, "error")
+        prohibited this word_type from being saved:
+      %ul
+        - @word_type.errors.full_messages.each do |msg|
+          %li= msg
+  = f.text_field :name, placeholder: 'Nombre del tipo de palabra'
+  .actions
+    = f.submit 'Agregar tipo de palabra', class: 'btn btn-primary'

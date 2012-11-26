@@ -10,3 +10,6 @@
  *
  *= require twitter/bootstrap
 */
+.down-for-navbar {
+    padding-top: 50px;
+}

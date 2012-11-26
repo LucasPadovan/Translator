@@ -6,7 +6,13 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .container
-      %h1 Ovejita
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %h1 Ovejita
+    .container.down-for-navbar
+      %ul.nav.nav-pills
+        %li.active= link_to 'Palabras', words_path
+        %li.active= link_to 'Tipos de palabras', word_types_path
       .well
         = yield

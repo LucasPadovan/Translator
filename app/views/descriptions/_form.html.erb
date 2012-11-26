@@ -16,12 +16,7 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :word_id %><br />
-    <%= f.number_field :word_id %>
-  </div>
-  <div class="field">
-    <%= f.label :word_type_id %><br />
-    <%= f.number_field :word_type_id %>
+    <%= f.select :word_type_id, WordType.word_types_for_select, prompt: 'Seleccione el tipo de palabra' %>
   </div>
   <div class="actions">
     <%= f.submit %>

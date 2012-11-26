@@ -25,6 +25,7 @@ class WordsController < ApplicationController
   # GET /words/new.json
   def new
     @word = Word.new
+    @description = @word.descriptions.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,13 +36,14 @@ class WordsController < ApplicationController
   # GET /words/1/edit
   def edit
     @word = Word.find(params[:id])
+    @description = @word.descriptions.last
   end
 
   # POST /words
   # POST /words.json
   def create
     @word = Word.new(params[:word])
-
+    @description = @word.descriptions.build(params[:description])
     respond_to do |format|
       if @word.save
         format.html { redirect_to @word, notice: 'Word was successfully created.' }
@@ -78,6 +80,22 @@ class WordsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to words_url }
       format.json { head :no_content }
+    end
+  end
+
+  def new_description
+    if Word.exists?(params[:id])
+      @word = Word.find(params[:id])
+      @description = @word.descriptions.build(params[:description])
+      @word.save
+    end
+    respond_to do |format|
+      if @description.save
+        format.html {redirect_to @word }
+      else
+        #TODO: ver como agregar los errores para que me los muestre directamente en ese formulario dentro de words
+        format.html {redirect_to @word}
+      end
     end
   end
 end

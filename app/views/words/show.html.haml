@@ -1,10 +1,28 @@
-%p#notice= notice
-%p
-  %b Name:
-  = @word.name
-%p
-  %b User:
-  = @word.user_id
+- if notice
+  .alert.alert-success= notice
+%h2= @word.name
+- @word.descriptions.group_by(&:word_type).each do |word_type, descriptions|
+  .alert.alert-success
+    %table.table
+      %theader
+        %tr
+          %td
+            %h4= "#{word_type.name}:"
+          %td
+      %tbody
+        - descriptions.each do |description|
+          %tr
+            %td= description.description
+            %td
+              .pull-right.btn-group
+                = link_to 'Editar', edit_description_path(description), class: 'btn btn-mini btn-warning'
+                = link_to 'Eliminar', description, method: :delete, class: 'btn btn-mini btn-danger'
+.well
+  = form_for Description.new, url: {action: 'new_description'} do |f|
+    = f.text_area :description, class: 'span8', placeholder: "Ingrese la definición de la palabra"
+    = f.select :word_type_id, WordType.word_types_for_select, prompt: 'Seleccione el tipo de palabra'
+    .actions
+      = f.submit "Agregar descripcion", disable_with: "Enviando respuesta...", class: "btn btn-primary"
 .btn-group
-  = link_to 'Edit', edit_word_path(@word), class: "btn btn-warning"
-  = link_to 'Back', words_path, class: "btn"
+  = link_to 'Editar', edit_word_path(@word), class: "btn btn-warning"
+  = link_to 'Volver', words_path, class: "btn"
