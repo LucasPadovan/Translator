@@ -9,7 +9,16 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require twitter/bootstrap
+ *= require utils
 */
+/*spacing*/
 .down-for-navbar {
     padding-top: 50px;
+}
+
+/*forms*/
+.text-area-middlet{
+    min-height: 200px;
+    min-width: 200px;
+    height: 200px;
 }

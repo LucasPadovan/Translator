@@ -17,12 +17,16 @@
               .pull-right.btn-group
                 = link_to 'Editar', edit_description_path(description), class: 'btn btn-mini btn-warning'
                 = link_to 'Eliminar', description, method: :delete, class: 'btn btn-mini btn-danger'
-.well
-  = form_for Description.new, url: {action: 'new_description'} do |f|
-    = f.text_area :description, class: 'span8', placeholder: "Ingrese la definición de la palabra"
-    = f.select :word_type_id, WordType.word_types_for_select, prompt: 'Seleccione el tipo de palabra'
-    .actions
-      = f.submit "Agregar descripcion", disable_with: "Enviando respuesta...", class: "btn btn-primary"
+.menu#menu
+  %table.tabla#tabla
+    %tr
+      %td#formulario
+        = form_for Description.new, url: {action: 'new_description'} do |f|
+          = f.text_area :description, class: 'text-area-middlet', placeholder: "Ingrese la definición de la palabra"
+          = f.select :word_type_id, WordType.word_types_for_select, prompt: 'Seleccione el tipo de palabra'
+          = f.submit "Agregar descripcion", disable_with: "Enviando respuesta...", class: "btn btn-primary"
+      %td#celda.vertical-text
+        Agregar descripcion
 .btn-group
   = link_to 'Editar', edit_word_path(@word), class: "btn btn-warning"
   = link_to 'Volver', words_path, class: "btn"
